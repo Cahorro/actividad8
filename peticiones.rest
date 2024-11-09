@@ -1,0 +1,74 @@
+@url = http://localhost:3000/api
+
+#########
+# POSTS #
+#########
+
+GET {{url}}/posts
+
+###
+GET {{url}}/posts/
+
+###
+GET {{url}}/clientes/400
+
+###
+POST {{url}}/clientes
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxMSwidXN1YXJpb19yb2wiOiJhZG1pbiIsImlhdCI6MTczMDIyNzg5NX0.7z8gHJLYmdN8x2OAfZ2buFZ0pu200wFzWF84TOeNR1w
+
+{
+    "nombre": "Lorena",
+    "apellidos": "López",
+    "direccion": "C Falsa 123", 
+    "email": "la_lore@gmail.coma",
+    "edad": 39, 
+    "genero": "F",
+    "cuota": 19.90, 
+    "fecha_nacimiento": "1981-10-17",
+    "dni": "18027637Y"
+}
+
+###
+PUT {{url}}/clientes/125
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxMSwidXN1YXJpb19yb2wiOiJhZG1pbiIsImlhdCI6MTczMDIyNzg5NX0.7z8gHJLYmdN8x2OAfZ2buFZ0pu200wFzWF84TOeNR1w
+
+{
+  "nombre": "Lorenzo",
+  "apellidos": "Romero",
+  "direccion": "C Falsa 123",
+  "email": "rocio@gmail.coma",
+  "edad": 43,
+  "genero": "F",
+  "cuota": "9.90",
+  "fecha_nacimiento": "1981-10-16",
+  "dni": "18027637Y"
+}
+
+###
+DELETE {{url}}/clientes/30
+
+### API MONITORES
+#################
+GET {{url}}/monitores/clientes
+
+### API STAFF
+
+POST {{url}}/staff/registro
+Content-Type: application/json
+
+{
+  "usuario": "laura",
+  "email": "laura@gmail.com",
+  "password": "12345"
+}
+
+###
+POST {{url}}/staff/login
+Content-Type: application/json
+
+{
+  "email": "mario@gmail.com",
+  "password": "12345"
+}
