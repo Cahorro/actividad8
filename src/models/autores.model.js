@@ -25,13 +25,6 @@ function updateAutorById(autorId, { nombre, email, imagen }) {
     );
 }
 
-function updateClienteById(clienteId, { nombre, apellidos, direccion, email, edad, genero, cuota, fecha_nacimiento, dni }) {
-    return pool.query(
-        'update clientes set nombre = ?, apellidos = ?, direccion = ?, email = ?, edad = ?, genero = ?, cuota = ?, fecha_nacimiento = ?, dni = ? where id = ?',
-        [nombre, apellidos, direccion, email, edad, genero, cuota, fecha_nacimiento, dni, clienteId]
-    );
-}
-
 function deleteAutorById(autorId) {
     return pool.query('delete from autores where id = ?', [autorId]);
 } 
