@@ -4,7 +4,7 @@ function selectAll(){
     return pool.query('select * from autores;')
 }
 
-function selectById(autorId) {
+async function selectAutorById(autorId) {
     const [result] = await pool.query('select * from autores where id = ?', [autorId]);
     if (result.length === 0) return null;
     return result[0];
@@ -30,5 +30,5 @@ function deleteAutorById(autorId) {
 } 
 
 module.exports = {
-    selectAll, selectById, , insertAutor, updateAutorById, deleteAutorById
+    selectAll, selectAutorById, insertAutor, updateAutorById, deleteAutorById
 }
