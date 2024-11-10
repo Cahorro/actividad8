@@ -1,28 +1,92 @@
+const {
+  selectAll,
+  selectById,
+  selectByAutor,
+  insertPost,
+  updatePostById,
+} = require("../models/posts.model");
+const { selectAutorById } = require("../models/autores.model");
 
-const getAllPosts = (req, res, next) => {
-    res.send('getAll');
-}
+const getAllPosts = async (req, res, next) => {
+  try {
+    const [result] = await selectAll();
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
 
-const getById = (req, res, next) =>{
+const getById = async (req, res, next) => {
+  const { postId } = req.params;
+  try {
+    const [post] = await selectById(postId);
+    if (post) {
+        const [autor] = await selectAutorById(post.autores_id);
+        post.autor = autor;
+    }
+    res.json(post);
+  } catch (error) {
+    next(error);
+  }
+};
 
-}
+const getByAutor = async (req, res, next) => {
+  try {
+    const { autorId } = req.params;
+    const [autor] = await selectAutorById(autorId);
+    const [posts] = await selectByAutor(autorId);
+    for (let post of posts) {
+      post.autor = autor;
+    }
 
-const getByAutor = (req, res, next) =>{
+    res.json(posts);
+  } catch (error) {
+    next(error);
+  }
+};
 
-}
 
-const createPost = (req, res, next) =>{
+const createPost = async (req, res, next) => {
+    try {
+      //  req.body.autores.id = req.autor.id;
+        const [result] = await insertPost(req.body);
+        const post = await selectById(result.insertId);
 
-}
+        res.json(post);
+    } catch (error) {
+        next(error);
+    }
+};
 
-const updatePost = (req, res, next) =>{
+const updatePost = async (req, res, next) => {
+    const { postId } = req.params;
 
-}
+    try {
+        const [result] = await updatePostById(postId, req.body);
+        const post = await selectById(postId);
+        res.json(post);
+    } catch (error) {
+        next(error);
+    }
+};
 
-const deletePost = (req, res, next) =>{
+const deletePost = async (req, res, next) => {
+    const { postId } = req.params;
 
-}
+    try {
+        const post = await selectById(postId);
+        await deleteById(postId);
+        res.json(post);
+    } catch (error) {
+        next(error);
+    }
+};
 
 module.exports = {
-    getAllPosts, getById, getByAutor, createPost, updatePost, deletePost
-}
+  getAllPosts,
+  getById,
+  getByAutor,
+  createPost,
+  updatePost,
+  deletePost,
+};
