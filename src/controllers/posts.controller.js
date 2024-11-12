@@ -9,8 +9,14 @@ const { selectAutorById } = require("../models/autores.model");
 
 const getAllPosts = async (req, res, next) => {
   try {
-    const [result] = await selectAll();
-    res.json(result);
+    const [posts] = await selectAll();
+    
+      for (let post of posts) {
+          const autorId = post.autores_id;
+          const [autor] = await selectAutorById(autorId);
+          post.autor = autor;
+    }
+    res.json(posts);
   } catch (error) {
     next(error);
   }
@@ -50,6 +56,7 @@ const createPost = async (req, res, next) => {
     try {
       //  req.body.autores.id = req.autor.id;
         const [result] = await insertPost(req.body);
+        console.log(result.insertId);
         const post = await selectById(result.insertId);
 
         res.json(post);

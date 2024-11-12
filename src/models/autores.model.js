@@ -5,7 +5,7 @@ function selectAll(){
 }
 
 async function selectAutorById(autorId) {
-    const [result] = await pool.query('select * from autores where id = ?', [autorId]);
+    const result = await pool.query('select * from autores where id = ?', [autorId]);
     if (result.length === 0) return null;
     return result[0];
 }
