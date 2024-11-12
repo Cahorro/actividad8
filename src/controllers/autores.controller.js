@@ -22,7 +22,6 @@ const getById = async (req, res, next) => {
 const createAutor = async (req, res, next) =>{
     try {
         const result = await insertAutor(req.body);
-        console.log(result);
         const autor = await selectAutorById(result);
 
         res.json(autor);

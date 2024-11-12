@@ -1,13 +1,12 @@
 const pool = require("../config/db");
 
 function selectAll(){
-    return pool.query('select * from posts inner join autores on autores_id = autores.id;');
+    return pool.query('select * from posts;');
 }
 
 async function selectById(postId) {
-    const [result] = await pool.query('select * from posts where posts.id = ?;', [postId]);
-
-    if (posts.length === 0) {
+    const result = await pool.query('select * from posts where id = ?;', [postId]);
+    if (result.length === 0) {
         return null;
     }
 
