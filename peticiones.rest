@@ -1,0 +1,45 @@
+@url = http://localhost:3000/api
+
+#########
+# POSTS #
+#########
+
+GET {{url}}/posts
+
+###
+GET {{url}}/posts/1
+
+###
+GET {{url}}/posts/autor/1
+
+###
+POST {{url}}/posts
+Content-Type: application/json
+
+{
+  "titulo": "Post de Panoramix",
+  "descripcion": "Lorem fistrum no te digo trigo por no llamarte Rodrigor sexuarl pupita jarl por la gloria de mi madre. Te voy a borrar el cerito ahorarr de la pradera torpedo fistro. Mamaar benemeritaar al ataquerl no puedor va usté muy cargadoo la caidita torpedo va usté muy cargadoo por la gloria de mi madre apetecan ese que llega. A wan la caidita qué dise usteer te va a hasé pupitaa quietooor condemor. Pecador de la pradera quietooor sexuarl torpedo ese hombree. De la pradera me cago en tus muelas de la pradera ahorarr no te digo trigo por no llamarte Rodrigor hasta luego Lucas la caidita amatomaa mamaar llevame al sircoo amatomaa. Condemor ahorarr fistro te va a hasé pupitaa está la cosa muy malar a gramenawer. Por la gloria de mi madre quietooor jarl tiene musho peligro a wan diodeno por la gloria de mi madre tiene musho peligro llevame al sircoo quietooor. Diodenoo papaar papaar ahorarr mamaar amatomaa me cago en tus muelas quietooor qué dise usteer.",
+  "fecha_creacion": "2024-11-13", 
+  "categoria": "Artículos",
+  "autores_id": 1
+}
+
+###########
+# AUTORES #
+###########
+
+GET {{url}}/autores
+
+###
+GET {{url}}/autores/1
+
+###
+POST {{url}}/autores
+Content-Type: application/json
+
+{
+  "nombre": "Panoramix",
+  "email": "panoramix@gmail.com",
+  "imagen": "https://th.bing.com/th/id/OIP.c9LS8QI-09dWIdRsojmJSAAAAA?rs=1&pid=ImgDetMain"
+}
+
