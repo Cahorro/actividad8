@@ -51,7 +51,6 @@ const getByAutor = async (req, res, next) => {
   }
 };
 
-
 const createPost = async (req, res, next) => {
     try {
       //  req.body.autores.id = req.autor.id;
